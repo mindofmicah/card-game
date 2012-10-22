@@ -21,4 +21,22 @@ class Card
 		$this->suit = $suit;
 	}
 
+	public function __toString()
+	{
+		return $this->label . strtoupper($this->suit[0]);
+	}
+	
+	public function toDisplayLines()
+	{
+		/**
+		+--+
+		|10|
+		| H|
+		*/
+		return array(
+			'+--+',
+			'|' . str_pad(' ', 2, $this->label) . '|',
+			'|' . str_pad(' ', 2,strtoupper($this->suit[0])) . '|'
+		);
+	}
 }
