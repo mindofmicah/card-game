@@ -7,18 +7,18 @@ $deck = new Deck();
 
 $game->setDeck($deck);
 
-$numPlayers = 4;
+$numPlayers = 3;
 while ($numPlayers-- > 0) {
-	$player = new Player();
-	$game->addPlayer($player);
+	$game->addPlayer();
 }
 
 $numCards = 5;
 while ($numCards-- > 0) {
 	$card = $deck->deal();
-	$player->receiveCard($card);
+	
+	$game->getCurrentPlayer()->receiveCard($card);
 }
 
-echo $player->toDisplay() . "\n";
+echo $game->getCurrentPlayer()->toDisplay() . "\n";
 echo "\n";
 
