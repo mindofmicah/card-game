@@ -12,14 +12,16 @@ while ($numPlayers-- > 0) {
 	$game->addPlayer();
 }
 
-$numCards = 5;
+$numCards = 20;
 while ($numCards-- > 0) {
 	$card = $deck->deal();
 	
 	$game->getCurrentPlayer()->receiveCard($card);
+	$game->nextPlayer();
 }
 
 shell_exec('reset');
-echo $game->getCurrentPlayer()->toDisplay() . "\n";
+echo $game->display(). "\n";
+//echo $game->getCurrentPlayer()->toDisplay() . "\n";
 echo "\n";
 
