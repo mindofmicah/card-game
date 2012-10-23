@@ -7,7 +7,7 @@ $deck = new Deck();
 
 $game->setDeck($deck);
 
-$numPlayers = 3;
+$numPlayers = 4;
 while ($numPlayers-- > 0) {
 	$game->addPlayer();
 }
@@ -19,6 +19,7 @@ while ($numCards-- > 0) {
 	$game->getCurrentPlayer()->receiveCard($card);
 }
 
+shell_exec('reset');
 echo $game->getCurrentPlayer()->toDisplay() . "\n";
 echo "\n";
 
