@@ -1,7 +1,8 @@
 <?php
 class Game
 {
-	protected $deck, 
+	protected $deck,
+			  $currentPlayerIndex = 0,
 	          $players = array();
 	
 	/**
@@ -20,7 +21,7 @@ class Game
 	// TODO convert this from being a placeholder method
 	public function getCurrentPlayer()
 	{
-		return $this->players[0];
+		return $this->players[$this->currentPlayerIndex];
 	}
 	
 	/**
@@ -46,5 +47,28 @@ class Game
 		}
 		$this->players[] = $player;
 		return $this;
+	}
+
+
+	public function display()
+	{
+		$ret = '';
+		if (!empty($this->players[2])) {
+			$ret.= $this->players[2]->toDisplay();
+		}
+		$ret.="\n\n\n\n\n\n";
+		$ret.= $this->players[0]->toDisplay();
+		return $ret;
+	}
+	public function nextPlayer()
+	{
+		$this->currentPlayerIndex++;
+		if (!array_key_exists($this->currentPlayerIndex, $this->players)) {
+			$this->currentPlayerIndex = 0;
+		}
+//		$this->currentPlayerIndex++;
+		//if () {
+		
+		//}
 	}
 }
