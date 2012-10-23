@@ -39,6 +39,16 @@ class Card
 			);
 		} elseif ($param & self::IS_HORIZONTAL) {
 			return array(
+				'+----+',
+				'|' . str_pad(' ', 2, $this->label) . ' '. strtoupper($this->suit[0]).'|',
+				'+----+'
+			);
+			/*
+			----+
+			10 S|
+			----+
+			*/
+			return array(
 				'going to implement a horizontal view'
 			);
 		} else {
