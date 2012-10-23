@@ -37,7 +37,7 @@ class Game
 			break;
 			case 1:
 			case 3:
-			$player = new Player_Bottom();		
+			$player = new Player_Side();		
 			break;
 			case 2:
 			$player = new Player_Top();
@@ -52,12 +52,30 @@ class Game
 
 	public function display()
 	{
+		$spaces = '           ';
 		$ret = '';
 		if (!empty($this->players[2])) {
-			$ret.= $this->players[2]->toDisplay();
+			foreach (explode("\n", $this->players[2]->toDisplay()) as $line) {
+				$ret.= $spaces . $line . "\n";
+			}			
 		}
-		$ret.="\n\n\n\n\n\n";
-		$ret.= $this->players[0]->toDisplay();
+
+		if (!empty($this->players[1])) {
+			$lines = explode("\n", $this->players[1]->toDisplay());
+			$otherLines = explode("\n", $this->players[3]->toDisplay());
+			foreach ($lines as $index=>$line) {
+				if ($index != 5) {
+
+		
+			$ret.= $line .'                          ' . $otherLines[$index]."\n";}
+else{
+			$ret.= $line .'      Micah\'s Cards       ' . $otherLines[$index]."\n";}
+			}
+		}
+
+		foreach (explode("\n", $this->players[0]->toDisplay()) as $line) {
+			$ret.= $spaces. $line . "\n";
+		}
 		return $ret;
 	}
 	public function nextPlayer()
