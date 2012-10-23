@@ -2,6 +2,8 @@
 class Card
 {
 	protected $rank, $suit, $label;
+	const IS_VERTICAL = 1;
+	const IS_HORIZONTAL = 2;
 	static protected $replacements = array(
 		1=>'A',
 		11=>'J',
@@ -26,17 +28,21 @@ class Card
 		return $this->label . strtoupper($this->suit[0]);
 	}
 	
-	public function toDisplayLines()
+	public function toDisplayLines($param = self::IS_VERTICAL)
 	{
-		/**
-		+--+
-		|10|
-		| H|
-		*/
-		return array(
-			'+--+',
-			'|' . str_pad(' ', 2, $this->label) . '|',
-			'|' . str_pad(' ', 2,strtoupper($this->suit[0])) . '|'
-		);
+		if ($param & self::IS_VERTICAL) {
+			return array(
+				'+--+',
+				'|' . str_pad(' ', 2, $this->label) . '|',
+				'|' . str_pad(' ', 2,strtoupper($this->suit[0])) . '|',
+				'+--+'
+			);
+		} elseif ($param & self::IS_HORIZONTAL) {
+			return array(
+				'going to implement a horizontal view'
+			);
+		} else {
+			return array();
+		}
 	}
 }
