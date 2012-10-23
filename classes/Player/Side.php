@@ -9,19 +9,13 @@ class Player_Side extends Player
 		$ret = '';
 		$p_lines = array();
 		foreach ($this->cards as $c_index => $card) {
-			$lines = $card->toDisplayLines();
-			foreach ($lines as $index => $line) {
-				if (!array_key_exists($index, $p_lines)) {
-					$p_lines[$index] = '';
-				}
-				
-				if($c_index > 0) {
-					$line = substr($line, 1);
-				}
-				$p_lines[$index] .= $line;
-//				$ret.= $line ."\n";
+			$lines = $card->toDisplayLines(Card::IS_HORIZONTAL);
+			if($c_index != 0 ) {
+				array_shift($lines);
 			}
+			$ret.= implode("\n", $lines) . "\n";
+//			print_r($lines);
 		}
-		return implode("\n", $p_lines);
+		return $ret;
 	}
 }
