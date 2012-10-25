@@ -54,6 +54,7 @@ class Game
 	{
 		$spaces = '        ';
 		$ret = '';
+		$middle = 5;
 		$board_title = 'Micah\'s Cards';
 		if (!empty($this->players[2])) {
 			foreach (explode("\n", $this->players[2]->toDisplay()) as $line) {
@@ -64,10 +65,11 @@ class Game
 
 
 		if (!empty($this->players[1])) {
+			$middle = $this->players[1]->getNumCards();
 			$lines = explode("\n", $this->players[1]->toDisplay());
 			$otherLines = explode("\n", $this->players[3]->toDisplay());
 			foreach ($lines as $index=>$line) {
-				if ($index != 5) {
+				if ($index != $middle) {
 
 		
 			$ret.= $line . str_repeat(' ', $numSpaces) . $otherLines[$index]."\n";}
