@@ -52,13 +52,16 @@ class Game
 
 	public function display()
 	{
-		$spaces = '           ';
+		$spaces = '        ';
 		$ret = '';
+		$board_title = 'Micah\'s Cards';
 		if (!empty($this->players[2])) {
 			foreach (explode("\n", $this->players[2]->toDisplay()) as $line) {
 				$ret.= $spaces . $line . "\n";
 			}			
 		}
+		$numSpaces = 3 * $this->players[0]->getNumCards() + 1 + 5;
+
 
 		if (!empty($this->players[1])) {
 			$lines = explode("\n", $this->players[1]->toDisplay());
@@ -67,10 +70,13 @@ class Game
 				if ($index != 5) {
 
 		
-			$ret.= $line .'                          ' . $otherLines[$index]."\n";}
+			$ret.= $line . str_repeat(' ', $numSpaces) . $otherLines[$index]."\n";}
 else{
-			$ret.= $line .'      Micah\'s Cards       ' . $otherLines[$index]."\n";}
-			}
+
+
+		$ret.= $line . str_pad(str_repeat(' ', floor((($numSpaces) - strlen($board_title)) / 2)) .$board_title,$numSpaces,' ', STR_PAD_RIGHT) . $otherLines[$index]	."\n";
+//			$ret.= $line .'      Micah\'s Cards       ' . $otherLines[$index]."\n";}
+		}	}
 		}
 
 		foreach (explode("\n", $this->players[0]->toDisplay()) as $line) {
