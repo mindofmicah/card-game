@@ -55,4 +55,5 @@ class Card
 			return array();
 		}
 	}
+	public function getRank(){return $this->rank;}
 }
